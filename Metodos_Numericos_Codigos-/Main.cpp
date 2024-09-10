@@ -1,67 +1,30 @@
+#include "Prerequisites.h"
 #include "Biseccion.h"
+#include "Biseccion1.h"
 #include "Biseccion2.h"
 #include "Biseccion3.h"
 
-// Declarar la función func2 para el ejercicio 2
-double func2(double i);
 
 int main() {
+    cout << fixed << setprecision(6);
 
-    // Bisección 1
-    /*
-    {
-        // Clase principal para ejecutar el programa
-        // Crear una instancia del método de la bisección con los parámetros dados
-        double k = 0.5, w = 2, y = 4, tolerance = 0.0002;
+    // Ejercicio 1
+    cout << "Ejercicio 1: Resolver y = 10e^(-kt)cos(wt) - 4" << endl;
+    Biseccion1 e1(0, 2, 0.0002, 100);
+    e1.metodoBiseccion();
+    cout << endl;
 
-        // Instancia de la clase BisectionMethod
-        BisectionMethod method(k, w, y, tolerance);
+    // Ejercicio 2
+    cout << "Ejercicio 2: Resolver A = 20000(1 + i)^6 - 4000" << endl;
+    Biseccion2 e2(0, 0.1, 0.00002, 100);
+    e2.metodoBiseccion();
+    cout << endl;
 
-        // Ejecutar el método de bisección
-        method.execute();
+    // Ejercicio 3
+    cout << "Ejercicio 3: Resolver la velocidad de un paracaidista" << endl;
+    Biseccion3 e3(50, 100, 0.0001, 100);
+    e3.metodoBiseccion();
+    cout << endl;
 
-        return 0;
-    };
-    */
-
-    // Bisección 2
-    /*
-    {
-        Biseccion2 bis2;
-        double t0 = 0.0;
-        double t1 = 0.1;  // Intervalo inicial donde buscamos la raíz
-        double tol = 0.0002;  // Tolerancia
-        int maxIter = 100;
-
-        // Ejecutar el método de bisección para el ejercicio 2
-        bis2.bisectionMethod(func2, t0, t1, tol, maxIter);
-
-        return 0;
-    }
-    */
-
-    //Bisección 3
-    {
-        Biseccion3 bis3;
-        double t0 = 0.0;   // Intervalo inicial donde buscamos la raíz
-        double t1 = 3.0;   // Cambia los valores de acuerdo al ejercicio 3
-        double tol = 0.0002; // Tolerancia
-        int maxIter = 100;
-
-        // Usar una lambda para capturar la función miembro funcion3
-        auto func3 = [&bis3](double x) { return bis3.funcion3(x); };
-
-        // Ejecutar el método de bisección para el ejercicio 3 usando la lambda
-        bis3.biseccionMethod(func3, t0, t1, tol, maxIter);
-    }
-}
-
-// Definir la función func2 para el ejercicio 2
-double func2(double i) {
-    const double P = 20000;
-    const double A = 4000;
-    const int n = 6;
-
-    // Ecuación: A = P * (1 + i/n)^(n*t)
-    return P * pow(1 + i / n, n) - A;
+    return 0;
 }

@@ -1,77 +1,71 @@
-#pragma once
-#include "Prerequisites.h"
+#ifndef BISECCION_H
+#define BISECCION_H
 
-/*
-// Clase que implementa el Método de Bisección
-class BisectionMethod {
-private:
-    double k, w, y;        // Valores de la función
-    double t0, t1;         // Valores iniciales del intervalo
-    double tolerance;      // Tolerancia para el error
-    double prevMid;        // Almacena el valor anterior del punto medio
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+
+class Biseccion {
+protected:
+    double x0, x1, xm, tol;
+    int maxIter;
 
 public:
-    // Constructor para inicializar los valores
-    BisectionMethod(double kVal, double wVal, double yVal, double tol)
-        : k(kVal), w(wVal), y(yVal), tolerance(tol), t0(0), t1(5), prevMid(0) {}
+    Biseccion(double x0, double x1, double tol, int maxIter) : x0(x0), x1(x1), tol(tol), maxIter(maxIter) {}
 
-    // Método para evaluar la función en el punto t
-    double evaluate(double t) {
-        return 10 * exp(-k * t) * cos(w * t) - y;
-    }
+    virtual double funcion(double x) = 0;  // Función virtual para cada ecuación específica.
 
-    // Método que ejecuta el proceso de bisección
-    void execute() {
-        double tMid, fMid, f0, errorPercentual = 100;
-        int iteration = 1;
+    void metodoBiseccion() {
+        double f0, f1, fm;
+        int iter = 0;
+        double errorPorcentual = 100;  // Inicialmente el error es 100%
+        double errorAnterior = 0;
 
-        // Configurar la precisión para la salida de los valores
-        cout << fixed << setprecision(4);
+        // Encabezados de la tabla
+        std::cout << std::setw(10) << "Iteracion" << std::setw(10) << "x0" << std::setw(10) << "x1" << std::setw(10) << "xm"
+            << std::setw(15) << "f(xm)" << std::setw(15) << "f(x0)" << std::setw(15) << "f(x1)"
+            << std::setw(15) << "Error %" << std::endl;
 
-        // Encabezado de la tabla de resultados con formato
-        cout << setw(10) << left << "Iteración"
-            << setw(10) << "t0"
-            << setw(10) << "t1"
-            << setw(10) << "tm"
-            << setw(15) << "f(tm)"
-            << setw(15) << "Error porcentual (%)"
-            << endl;
+        while (iter < maxIter && errorPorcentual > tol) {
+            xm = (x0 + x1) / 2.0;
+            f0 = funcion(x0);
+            f1 = funcion(x1);
+            fm = funcion(xm);
 
-        // Ciclo que continúa hasta que el intervalo sea menor que la tolerancia
-        while (abs(t1 - t0) > tolerance) {
-            tMid = (t0 + t1) / 2;   // Calcula el punto medio
-            fMid = evaluate(tMid);  // Calcula el valor de la función en el punto medio
-            f0 = evaluate(t0);      // Calcula el valor de la función en t0
+            // Mostrar resultados de manera más legible
+            std::cout << std::setw(10) << iter
+                << std::setw(10) << std::setprecision(6) << x0
+                << std::setw(10) << std::setprecision(6) << x1
+                << std::setw(10) << std::setprecision(6) << xm
+                << std::setw(15) << std::setprecision(6) << fm
+                << std::setw(15) << std::setprecision(6) << f0
+                << std::setw(15) << std::setprecision(6) << f1;
 
-            // Calcular el error porcentual solo si no es la primera iteración
-            if (iteration > 1) {
-                errorPercentual = abs((tMid - prevMid) / tMid) * 100;
-            }
-
-            // Mostrar resultados de cada iteración con formato
-            cout << setw(10) << left << iteration
-                << setw(10) << t0
-                << setw(10) << t1
-                << setw(10) << tMid
-                << setw(15) << fMid
-                << setw(10) << setprecision(2) << errorPercentual << "%"
-                << endl;
-
-            // Verificar el signo para decidir el siguiente intervalo
-            if (f0 * fMid < 0) {
-                t1 = tMid;  // Si el producto es negativo, cambia el límite superior
+            // Cálculo del error porcentual
+            if (iter > 0) {
+                errorPorcentual = fabs((xm - errorAnterior) / xm) * 100; // Error porcentual en porcentaje
+                std::cout << std::setw(15) << std::setprecision(4) << errorPorcentual << "%" << std::endl;
             }
             else {
-                t0 = tMid;  // Si es positivo, cambia el límite inferior
+                std::cout << std::setw(15) << "N/A" << std::endl; // En la primera iteración no hay error previo
             }
 
-            // Almacenar el valor actual del punto medio para la próxima iteración
-            prevMid = tMid;
-            iteration++; // Incrementa el número de iteración
-        }
+            errorAnterior = xm;
 
-        // Resultado final después de alcanzar la tolerancia
-        cout << "\nEl valor aproximado de t es: " << tMid << "\n";
+            if (fabs(fm) < tol) {
+                break;
+            }
+
+            if (f0 * fm < 0) {
+                x1 = xm;
+            }
+            else {
+                x0 = xm;
+            }
+
+            iter++;
+        }
     }
 };
-*/
+
+#endif

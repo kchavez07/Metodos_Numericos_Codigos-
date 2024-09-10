@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Biseccion.h" />
+    <ClInclude Include="Biseccion1.h" />
     <ClInclude Include="Biseccion2.h" />
     <ClInclude Include="Biseccion3.h" />
     <ClInclude Include="Prerequisites.h" />
