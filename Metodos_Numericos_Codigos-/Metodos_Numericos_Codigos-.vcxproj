@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClInclude Include="Biseccion.h" />
     <ClInclude Include="Biseccion2.h" />
+    <ClInclude Include="Biseccion3.h" />
     <ClInclude Include="Prerequisites.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

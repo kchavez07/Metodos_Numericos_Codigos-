@@ -1,6 +1,7 @@
 #pragma once
 #include "Prerequisites.h"
 
+/*
 // Clase que implementa el Método de Bisección
 class BisectionMethod {
 private:
@@ -73,3 +74,4 @@ public:
         cout << "\nEl valor aproximado de t es: " << tMid << "\n";
     }
 };
+*/
