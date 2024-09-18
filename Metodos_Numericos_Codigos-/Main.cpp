@@ -5,10 +5,49 @@
 #include "Biseccion3.h"
 #include "NewtonRaphson1.h"
 #include "NewtonRaphson2.h"
+#include "NewtonRaphson3.h"
+#include "NewtonRaphson4.h"
+#include "NewtonRaphson5.h"
+#include "NewtonRaphsonMaximo.h"
+#include "NewtonRaphsonTanque.h"
 
+// Declaraciones de funciones
+void ejecutarTodosBiseccion();
+void ejecutarTodosNewtonRaphson();
 
+// Menú principal
 int main() {
-    cout << fixed << setprecision(6);
+    cout << fixed << setprecision(4);  // Mostrar solo 5 dígitos significativos
+    int opcion;
+    do {
+        cout << "\n--- MENU PRINCIPAL ---\n";
+        cout << "1. Ejecutar ejercicios de Biseccion\n";
+        cout << "2. Ejecutar ejercicios de Newton-Raphson\n";
+        cout << "3. Salir\n";
+        cout << "Opcion: ";
+        cin >> opcion;
+
+        switch (opcion) {
+        case 1:
+            ejecutarTodosBiseccion();  // Llamada para ejecutar todos los ejercicios de Bisección
+            break;
+        case 2:
+            ejecutarTodosNewtonRaphson();  // Llamada para ejecutar todos los ejercicios de Newton-Raphson
+            break;
+        case 3:
+            cout << "Saliendo del programa.\n";
+            break;
+        default:
+            cout << "Opcion invalida.\n";
+        }
+    } while (opcion != 3);
+
+    return 0;
+}
+
+// Función para ejecutar todos los ejercicios de Bisección
+void ejecutarTodosBiseccion() {
+    cout << fixed << setprecision(5);
 
     // Biseccion 1
     cout << "Ejercicio 1: Resolver y = 10e^(-kt)cos(wt) - 4" << endl;
@@ -27,25 +66,51 @@ int main() {
     Biseccion3 e3(50, 100, 0.0001, 100);
     e3.metodoBiseccion();
     cout << endl;
+}
 
-    // NewtonRaphson1
-    cout << "Resolviendo: x^3 + 2x^2 + 10x - 20 = 0" << endl;
-    double xInicial = 1.0;        // Valor inicial de x para el polinomio
-    double toleranciaPolinomio = 0.001; // Tolerancia de error para el polinomio
+// Función para ejecutar todos los ejercicios de Newton-Raphson
+void ejecutarTodosNewtonRaphson() {
+    // No imprimimos encabezados generales aquí, lo dejamos a las clases.
 
-    NewtonRaphsonPolinomio solverPolinomio(xInicial, toleranciaPolinomio);
-    solverPolinomio.iterar();
+    // NewtonRaphson1: x^3 + 2x^2 + 10x - 20 = 0
+    cout << "\nResolviendo: x^3 + 2x^2 + 10x - 20 = 0\n";
+    NewtonRaphson1 solver1(1.0, 0.001, 100);  // Valor inicial, tolerancia, iteraciones
+    solver1.iterar();
+    cout << "---------------------------------\n";
 
-    cout << "---------------------------------" << endl;
-        
-    // NewtonRahpson2
-    cout << "Resolviendo: 70e^{-1.5t} + 20e^{-0.8t} = 10" << endl;
-    double tInicial = 1.5;        // Valor inicial de t para la concentración de bacterias
-    double toleranciaBacterias = 0.001; // Tolerancia de error para las bacterias
+    // NewtonRaphson2: 70e^{-1.5t} + 20e^{-0.8t} = 10
+    cout << "\nResolviendo: 70e^{-1.5t} + 20e^{-0.8t} = 10\n";
+    NewtonRaphson2 solver2(1.5, 0.001, 100);  // Valor inicial, tolerancia, iteraciones
+    solver2.iterar();
+    cout << "---------------------------------\n";
 
-    // Instancia para la ecuación de concentración de bacterias
-    NewtonRaphsonBacterias solverBacterias(tInicial, toleranciaBacterias);
-    solverBacterias.iterar();
+    // NewtonRaphson3: x^3 - 2x - 2 = 0
+    cout << "\nResolviendo: x^3 - 2x - 2 = 0\n";
+    NewtonRaphson3 solver3(1.0, 0.001, 100);  // Valor inicial, tolerancia, iteraciones
+    solver3.iterar();
+    cout << "---------------------------------\n";
 
-        return 0;
-    }
+    // NewtonRaphson4: e^x + x - 7 = 0
+    cout << "\nResolviendo: e^x + x - 7 = 0\n";
+    NewtonRaphson4 solver4(1.0, 0.001, 100);  // Valor inicial, tolerancia, iteraciones
+    solver4.iterar();
+    cout << "---------------------------------\n";
+
+    // NewtonRaphson5: ln(x) + x^2 - 3 = 0
+    cout << "\nResolviendo: ln(x) + x^2 - 3 = 0\n";
+    NewtonRaphson5 solver5(1.0, 0.001, 100);  // Valor inicial, tolerancia, iteraciones
+    solver5.iterar();
+    cout << "---------------------------------\n";
+
+    // NewtonRaphsonMaximo: Encontrar el valor máximo de la función
+    cout << "\nEncontrando el valor maximo de la funcion...\n";
+    NewtonRaphsonMaximo solverMaximo(4.5, 0.001, 100);  // Valor inicial cercano a 4, tolerancia 0.001
+    solverMaximo.iterar();
+    cout << "---------------------------------\n";
+
+    // NewtonRaphson para el tanque
+    cout << "\nResolviendo para el volumen del tanque...\n";
+    NewtonRaphsonTanque solverTanque(1.5, 0.001, 3);  // Valor inicial, tolerancia, iteraciones
+    solverTanque.iterar();
+    cout << "---------------------------------\n";
+}

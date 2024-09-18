@@ -136,6 +136,11 @@
     <ClInclude Include="Biseccion3.h" />
     <ClInclude Include="NewtonRaphson1.h" />
     <ClInclude Include="NewtonRaphson2.h" />
+    <ClInclude Include="NewtonRaphson3.h" />
+    <ClInclude Include="NewtonRaphson4.h" />
+    <ClInclude Include="NewtonRaphson5.h" />
+    <ClInclude Include="NewtonRaphsonMaximo.h" />
+    <ClInclude Include="NewtonRaphsonTanque.h" />
     <ClInclude Include="Prerequisites.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
