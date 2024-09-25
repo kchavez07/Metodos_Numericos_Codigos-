@@ -10,20 +10,24 @@
 #include "NewtonRaphson5.h"
 #include "NewtonRaphsonMaximo.h"
 #include "NewtonRaphsonTanque.h"
+#include "MetodoPuntoFijo1.h"  
+#include "MetodoPuntoFijo2.h" 
 
 // Declaraciones de funciones
 void ejecutarTodosBiseccion();
 void ejecutarTodosNewtonRaphson();
+void ejecutarMetodoPuntoFijo();  // Ejecuta ambos ejercicios de Punto Fijo
 
 // Menú principal
 int main() {
-    cout << fixed << setprecision(4);  // Mostrar solo 5 dígitos significativos
+    cout << fixed << setprecision(5);  // Mostrar solo 5 dígitos significativos
     int opcion;
     do {
         cout << "\n--- MENU PRINCIPAL ---\n";
-        cout << "1. Ejecutar ejercicios de Biseccion\n";
-        cout << "2. Ejecutar ejercicios de Newton-Raphson\n";
-        cout << "3. Salir\n";
+        cout << "1. Ejecutar Metodo de Biseccion\n";
+        cout << "2. Ejecutar Metodo de Newton-Raphson\n";
+        cout << "3. Ejecutar Metodo de Punto Fijo\n"; 
+        cout << "4. Salir\n";
         cout << "Opcion: ";
         cin >> opcion;
 
@@ -35,12 +39,15 @@ int main() {
             ejecutarTodosNewtonRaphson();  // Llamada para ejecutar todos los ejercicios de Newton-Raphson
             break;
         case 3:
+            ejecutarMetodoPuntoFijo();  // Llamada para ejecutar ambos ejercicios de Punto Fijo
+            break;
+        case 4:
             cout << "Saliendo del programa.\n";
             break;
         default:
             cout << "Opcion invalida.\n";
         }
-    } while (opcion != 3);
+    } while (opcion != 4);
 
     return 0;
 }
@@ -70,7 +77,7 @@ void ejecutarTodosBiseccion() {
 
 // Función para ejecutar todos los ejercicios de Newton-Raphson
 void ejecutarTodosNewtonRaphson() {
-    // No imprimimos encabezados generales aquí, lo dejamos a las clases.
+    cout << fixed << setprecision(4);
 
     // NewtonRaphson1: x^3 + 2x^2 + 10x - 20 = 0
     cout << "\nResolviendo: x^3 + 2x^2 + 10x - 20 = 0\n";
@@ -113,4 +120,21 @@ void ejecutarTodosNewtonRaphson() {
     NewtonRaphsonTanque solverTanque(1.5, 0.001, 3);  // Valor inicial, tolerancia, iteraciones
     solverTanque.iterar();
     cout << "---------------------------------\n";
+}
+
+// Función para ejecutar el Método de Punto Fijo (ejecuta ambos ejercicios de Punto Fijo)
+void ejecutarMetodoPuntoFijo() {
+    double x0;
+    double tolerancia = 0.001;
+    int maxIter = 10;
+
+    // Ejercicio 1: Método de Punto Fijo para f(x) = e^(-x) - x
+    cout << "\nEjercicio 1: Método de Punto Fijo para f(x) = e^(-x) - x\n";
+    x0 = 1.0;  // Valor inicial para el primer ejercicio
+    ejecutarMetodoPuntoFijo1();  // Llamada a la función de MetodoPuntoFijo1
+
+    // Ejercicio 2: Método de Punto Fijo para la ecuación con Re = 3000
+    cout << "\nEjercicio 2: Método de Punto Fijo para la ecuación con Re = 3000\n";
+    x0 = 1.0;  // Valor inicial para el segundo ejercicio
+    ejecutarMetodoPuntoFijo2();  // Llamada a la función de MetodoPuntoFijo2
 }
