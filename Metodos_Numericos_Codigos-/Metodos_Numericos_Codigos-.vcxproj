@@ -127,7 +127,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="EjercicioPersonalizado.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -135,7 +134,6 @@
     <ClInclude Include="Biseccion1.h" />
     <ClInclude Include="Biseccion2.h" />
     <ClInclude Include="Biseccion3.h" />
-    <ClInclude Include="EjercicioPersonalizado.h" />
     <ClInclude Include="MetodoPuntoFijo2.h" />
     <ClInclude Include="MetodoPuntoFijo1.h" />
     <ClInclude Include="MetodoPuntoFijo3.h" />
