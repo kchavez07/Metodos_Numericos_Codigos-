@@ -27,7 +27,7 @@ void puntoFijo1(double x0, double tolerancia, int maxIter) {
         iteracion++;
     } while (error > tolerancia && iteracion <= maxIter);
 
-    cout << "Raíz aproximada: " << xNuevo << endl;
+    cout << "Raiz aproximada: " << xNuevo << endl;
 }
 
 // Función para ejecutar el Método de Punto Fijo para el primer ejercicio
@@ -36,6 +36,6 @@ void ejecutarMetodoPuntoFijo1() {
     double tolerancia = 0.001;  // Tolerancia para el error
     int maxIter = 10;  // Limitar las iteraciones a 10
 
-    cout << "\nMétodo de Punto Fijo para el primer ejercicio\n";
+    cout << "\nMetodo de Punto Fijo para el primer ejercicio\n";
     puntoFijo1(x0, tolerancia, maxIter);  // Llamada a la función del método de Punto Fijo
 }
